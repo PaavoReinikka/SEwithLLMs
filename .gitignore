@@ -1,0 +1,11 @@
+#ignore venvs and envs
+.venv/
+.env
+#ignore pycache
+__pycache__/
+#ignore vscode
+.vscode/
+#ignore pycharm
+.idea/
+#ignore jupyter
+.ipynb_checkpoints
