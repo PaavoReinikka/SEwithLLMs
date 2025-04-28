@@ -1,0 +1,23 @@
+services:
+
+  database:
+    container_name: pg_database
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "5432:5432" # change this if you have a local PostgreSQL instance running
+
+  database-migrations:
+    image: flyway/flyway:10
+    env_file:
+      - .env
+    depends_on:
+      - database
+    volumes:
+      - ./database-migrations:/flyway/sql
+    command: -connectRetries=60 -baselineOnMigrate=true migrate
+  

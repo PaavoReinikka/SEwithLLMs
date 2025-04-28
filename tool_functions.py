@@ -152,6 +152,24 @@ tool_map = {
     "divide": divide
 }
 
+@tool
+def message_to_AI(message: str) -> str:
+    '''
+    Sends a message to the AI. The message is prefixed with "Message to AI: ".
+    Message is used to send a message to the AI, when it needs to use tools
+    sequentially. For example, when asked 'what is (2 + 3) * 4?', the AI
+    can use the add tool to calculate 2 + 3, and message the result to itself
+    to calculate the final result.
+    This is a workaround for the fact that the AI cannot call itself.
+    
+    Args:
+        message (str): The message to send to the AI.
+    
+    Returns:
+        str: The message with a prefix.
+    '''
+    return f"Message to AI: {message}"
+
 def get_tools() -> list:
     '''
     Returns the list of tool functions.
@@ -180,3 +198,4 @@ def get_tool_names() -> list:
     Returns the list of tool names.
     '''
     return list(tool_map.keys())
+
